@@ -1,23 +1,167 @@
-# QUY CHẾ KHẢO THÍ, ĐÁNH GIÁ CHUYÊN CẦN VÀ QUY TRÌNH PHÚC KHẢO ĐIỂM SỐ – VINUNIVERSITY
-Mã văn bản liên chiếu: POL-REG-001 (Chapter III: Examination and Course Assessment)
+# QUY CHẾ THI CỬ, ĐIỀU KIỆN HOÃN THI VÀ THỦ TỤC PHÚC KHẢO ĐIỂM SỐ – VINUNIVERSITY
 
-## 1. Hình thức Đánh giá Đa cấu phần và Quy định khắt khe về Tỷ lệ Điểm danh (Attendance Policy)
-- **Quy định Chuyên cần tối thiểu:** VinUniversity áp dụng triết lý học tập tương tác liên tục, do đó việc tham gia lớp học là bắt buộc. Sinh viên bắt buộc phải duy trì tỷ lệ diện diện điểm danh tối thiểu là **80% tổng thời lượng** giảng dạy thực tế của mỗi học phần (bao gồm cả giờ học lý thuyết, thảo luận nhóm/Seminar, và thực hành). Hệ thống điểm danh được thực hiện tự động qua quét mã QR, nhận diện khuôn mặt hoặc giảng viên ghi nhận đầu giờ. Nếu sinh viên nghỉ học không có lý do chính đáng vượt quá 20% thời lượng môn học, sinh viên sẽ lập tức bị tước quyền dự thi bài thi kết thúc học phần (Disqualified from Final Exam), nhận điểm F (Fail) mặc định cho môn học đó và phải đóng tiền học lại từ đầu.
-- **Cấu trúc cấu phần điểm:** Điểm tổng kết môn học (Final Course Grade) không phụ thuộc duy nhất vào bài thi cuối kỳ mà được cấu thành từ thang điểm trọng số đa cấu phần (Continuous Assessment), bao gồm: Điểm tương tác trên lớp (Class Participation), Bài tập cá nhân (Quizzes/Assignments), Dự án nhóm (Group Projects), Bài thi giữa kỳ (Midterm Exam), và Bài thi/Đồ án tốt nghiệp cuối kỳ (Final Examination/Capstone). Tỷ lệ trọng số cụ thể được quy định rõ trong Đề cương chi tiết (Syllabus) công bố ở tuần đầu học kỳ.
+## 1. Quy chế thi cử
 
-## 2. Quy chế Hoãn thi Bài thi Cuối kỳ (Deferred Exam) và Quy định Học lại (Re-study)
-- **Quy trình Hoãn thi hợp lệ (Deferred Examination):** Sinh viên không thể tham gia bài thi cuối kỳ theo lịch trình đã công bố do các nguyên nhân bất khả kháng khẩn cấp (như: tai nạn giao thông chấn thương cấp cứu, ốm đau nằm viện có bệnh án và giấy xuất viện của bệnh viện cấp quận/huyện trở lên, tang chế của tứ thân phụ mẫu) phải thực hiện quy trình nộp Đơn xin hoãn thi (Deferred Exam Application) về Văn phòng Phòng Quản lý Đào tạo trong vòng tối đa **03 ngày làm việc** kể từ ngày tổ chức bài thi đó.
-  - Khi được phê duyệt hợp lệ, trạng thái điểm số của môn học trên SIS tạm thời hiển thị là **Ký hiệu điểm "I" (Incomplete)**. Điểm "I" này không ảnh hưởng đến cGPA hiện tại. Sinh viên có nghĩa vụ phải tham gia làm bài thi bù (Deferred Exam) vào đợt thi được nhà trường tổ chức riêng biệt ngay đầu học kỳ chính tiếp theo. Nếu sinh viên bỏ lỡ đợt thi bù này mà không có lý do chính đáng được phê duyệt lại, điểm "I" sẽ tự động chuyển đổi thành điểm F vĩnh viễn trên hệ thống.
-- **Quy định về Thi lại và Học lại (No Retake Exam Policy):** VinUniversity **hoàn toàn không tổ chức** các kỳ thi lại (Retake Examination) thông thường hoặc kỳ thi phụ cho những sinh viên bị điểm kém hoặc trượt môn cuối kỳ. Sinh viên nhận điểm F bắt buộc phải thực hiện thủ tục đăng ký học lại hoàn toàn (Re-study) môn học đó vào học kỳ có mở lớp tiếp theo để tích lũy tín chỉ. Đối với sinh viên đạt điểm thấp (mức điểm D, D+, C-), nhà trường cho phép đăng ký học cải thiện điểm (Improvement Study); điểm số của lần học sau sẽ được ghi nhận và thay thế điểm số của lần học trước khi tính toán cGPA, nhưng vết điểm cũ vẫn hiển thị trên bảng điểm lịch sử.
+### Hình thức đánh giá
 
-## 3. Quy trình Khiếu nại Điểm số và Thủ tục Phúc khảo Bài thi (Grade Appeal Procedure)
-Sinh viên có căn cứ hợp lý tin rằng kết quả chấm thi cuối kỳ có sự sai sót kỹ thuật hoặc định kiến từ phía người chấm có quyền thực hiện quy trình khiếu nại điểm số theo các bước chuẩn sau:
-- **Bước 1 (Nộp đơn):** Sinh viên điền đầy đủ thông tin vào Đơn xin phúc khảo bài thi (Official Grade Appeal Form) và nộp trực tiếp cho Văn phòng Phòng Quản lý Đào tạo trong vòng tối đa **05 ngày làm việc** kể từ ngày hệ thống SIS chính thức công bố điểm môn học đó. Mọi đơn từ nộp sau thời hạn này đều bị từ chối tiếp nhận.
-- **Bước 2 (Nghĩa vụ tài chính):** Sinh viên phải hoàn thành việc nộp Lệ phí phúc khảo theo biểu phí hiện hành của trường tại Phòng Kế toán. Khoản lệ phí này sẽ được nhà trường hoàn trả lại 100% cho sinh viên nếu kết quả phúc khảo chứng minh được bài chấm ban đầu có sai sót thuộc về lỗi của nhà trường và làm thay đổi điểm số của sinh viên theo hướng tăng lên.
-- **Bước 3 (Thành lập Hội đồng Chấm độc lập):** Sau khi nhận đơn hợp lệ, Phòng Quản lý Đào tạo chuyển bài thi (đã được rọc phách, xóa thông tin sinh viên) sang Viện chuyên môn phụ trách học phần. Viện trưởng sẽ chỉ định một Hội đồng chấm lại độc lập gồm tối thiểu 02 giảng viên (không bao gồm giảng viên đã chấm bài lần đầu). Kết quả thẩm định của Hội đồng chấm độc lập là phán quyết cuối cùng, điểm số mới sẽ được cập nhật đè lên SIS và thông báo bằng văn bản cho sinh viên trong vòng **10 đến 14 ngày làm việc** kể từ ngày nhận đơn.
+VinUniversity áp dụng nhiều hình thức đánh giá khác nhau tùy theo đặc thù của từng học phần, bao gồm:
 
-## 4. Quy định Khảo thí Đặc thù áp dụng riêng cho Môn Thực hành, Lâm sàng và Đồ án tốt nghiệp
-*Metadata_Application: Practical_Courses_Only*
-Đối với các học phần có tính chất đặc thù như: Học phần thực hành phòng thí nghiệm (Laboratory Courses), Thực tập lâm sàng bệnh viện (Clinical Clerkship của ngành Y khoa/Điều dưỡng), và Đồ án tốt nghiệp khóa luận (Capstone Project thuộc Viện Kỹ thuật và Khoa học Máy tính), các quy chế khảo thí được áp dụng nghiêm ngặt vượt trội so với môn lý thuyết:
-- **Không áp dụng chính sách hoãn thi hoặc thi bù tự động:** Do đặc thù chi phí vận hành cao, quy trình chuẩn bị trang thiết bị hóa chất, bệnh nhân mô phỏng hoặc lịch trực trực tiếp của bác sĩ hướng dẫn tại bệnh viện, sinh viên vắng mặt trong buổi đánh giá kỹ năng lâm sàng (OSCE), buổi thực hành lab, hoặc buổi bảo vệ đồ án trước Hội đồng mà không có lý do cấp cứu đặc biệt hiểm nghèo sẽ bị **tính điểm 0 (không) ngay lập tức** cho cấu phần đó, hoàn toàn không được quyền xin thi bù bằng bài thi viết lý thuyết hoặc dời lịch bảo vệ cá nhân.
-- **Nguyên tắc đánh giá liên tục dựa trên năng lực cốt lõi (Core Competencies):** Điểm số môn học được ghi nhận liên tục qua từng buổi học dựa trên Nhật ký thực hành (Logbook) hoặc Bảng kiểm kỹ năng (Checklist). Sinh viên phải đạt xếp loại "Đạt" (Pass/Satisfactory) tại **100% các năng lực cốt lõi** được định nghĩa trong đề cương học phần. Nếu sinh viên bị đánh giá là "Không đạt" ở bất kỳ một kỹ năng thực hành then chốt nào, điểm tổng kết môn học sẽ bị tính là F mặc định, không được phép áp dụng cơ chế bù trừ điểm số từ các bài thi lý thuyết khác để kéo điểm tổng kết lên.
+* Bài kiểm tra ngắn (Quiz).
+* Bài tập cá nhân.
+* Bài tập hoặc dự án nhóm.
+* Kiểm tra giữa kỳ.
+* Thuyết trình.
+* Thực hành phòng thí nghiệm.
+* Đánh giá kỹ năng thực hành.
+* Bài thi hoặc đánh giá cuối kỳ.
+
+Tỷ trọng điểm số của từng cấu phần được quy định trong đề cương môn học (Course Syllabus).
+
+### Thi cuối kỳ
+
+Bài đánh giá cuối kỳ có thể được tổ chức dưới nhiều hình thức:
+
+* Thi viết.
+* Bài luận.
+* Báo cáo cuối kỳ.
+* Thuyết trình.
+* Đồ án hoặc dự án.
+* Hình thức đánh giá tổng hợp khác do học phần quy định.
+
+Lịch thi cuối kỳ được Văn phòng Registrar sắp xếp và công bố chính thức.
+
+### Vắng mặt trong kỳ thi
+
+Nếu sinh viên vắng mặt trong kỳ thi mà không có lý do hợp lệ được nhà trường chấp thuận, thông thường sinh viên sẽ nhận:
+
+**0 điểm cho bài thi đó.**
+
+Chính sách xử lý bài thi vắng mặt được quy định trong đề cương học phần.
+
+---
+
+## 2. Điều kiện hoãn thi và thi bù
+
+### Các trường hợp được xem xét
+
+Sinh viên có thể được xem xét thi bù hoặc hoãn thi nếu không thể tham gia kỳ thi chính vì các lý do chính đáng như:
+
+* Bệnh tật hoặc tình trạng sức khỏe nghiêm trọng có xác nhận y tế.
+* Tai nạn hoặc tình huống khẩn cấp.
+* Tang sự hoặc sự cố nghiêm trọng trong gia đình.
+* Hoạt động học thuật hoặc ngoại khóa được VinUniversity phê duyệt.
+* Xung đột lịch thi theo quy định của nhà trường.
+* Các trường hợp đặc biệt khác được Registrar và chương trình đào tạo xem xét.
+
+### Hồ sơ chứng minh
+
+Sinh viên phải cung cấp tài liệu xác minh hợp lệ như:
+
+* Giấy khám bệnh hoặc giấy nhập viện.
+* Giấy xác nhận của cơ quan có thẩm quyền.
+* Văn bản xác nhận tham gia hoạt động chính thức của trường.
+* Các tài liệu chứng minh liên quan khác.
+
+### Thời hạn nộp hồ sơ
+
+Tài liệu chứng minh phải được gửi cho Registrar Office trong vòng:
+
+**01 tuần kể từ ngày diễn ra kỳ thi hoặc ngày vắng mặt.**
+
+### Các trường hợp không được chấp nhận
+
+Những lý do sau không được xem là căn cứ hợp lệ để hoãn thi hoặc thi bù:
+
+* Vé máy bay về quê sớm.
+* Kế hoạch du lịch cá nhân.
+* Kỳ nghỉ gia đình.
+* Các lý do cá nhân không có tài liệu chứng minh.
+
+### Thi bù
+
+Nếu được phê duyệt, sinh viên có thể được tham gia kỳ thi bù (Make-up Exam) theo lịch do nhà trường tổ chức.
+
+Trong trường hợp học phần không tổ chức thi bù, sinh viên có thể phải tham gia kỳ đánh giá tiếp theo theo quy định của chương trình đào tạo.
+
+---
+
+## 3. Thủ tục phúc khảo điểm số
+
+### Quyền phúc khảo
+
+Sinh viên có quyền yêu cầu xem xét lại điểm học phần nếu có căn cứ cho rằng:
+
+* Có sai sót trong quá trình nhập hoặc tính điểm.
+* Có sai sót hành chính.
+* Việc đánh giá bị ảnh hưởng bởi sự thiên vị hoặc thiếu khách quan.
+* Tiêu chí đánh giá chưa được áp dụng đúng theo quy định của học phần.
+
+Lưu ý:
+
+Phúc khảo chỉ áp dụng đối với **điểm tổng kết học phần (Final Course Grade)**.
+
+### Bước 1: Trao đổi với giảng viên
+
+Ngay sau khi điểm được công bố, sinh viên cần trao đổi trực tiếp với giảng viên qua email để:
+
+* Hiểu rõ cơ sở chấm điểm.
+* Xác minh khả năng có sai sót trong quá trình tính điểm.
+* Tìm kiếm giải pháp trước khi gửi khiếu nại chính thức.
+
+### Bước 2: Nộp đơn phúc khảo chính thức
+
+Nếu vấn đề chưa được giải quyết, sinh viên gửi:
+
+* Đơn phúc khảo điểm.
+* Các tài liệu chứng minh liên quan.
+* Biên lai lệ phí phúc khảo (nếu có yêu cầu).
+
+Hồ sơ được gửi tới bộ phận Accreditation, Testing & Quality Assurance (AQA) và giảng viên phụ trách học phần.
+
+### Thời hạn nộp đơn
+
+Đơn phúc khảo phải được nộp trong vòng:
+
+**05 ngày làm việc kể từ ngày điểm chính thức được công bố trên Canvas.**
+
+### Bước 3: Xem xét hồ sơ
+
+Chương trình đào tạo hoặc hội đồng được chỉ định sẽ:
+
+* Xem xét hồ sơ.
+* Trao đổi với giảng viên.
+* Đánh giá các bằng chứng liên quan.
+* Đưa ra kết luận về tính hợp lệ của yêu cầu phúc khảo.
+
+### Bước 4: Thông báo kết quả
+
+Kết quả xử lý có thể bao gồm:
+
+* Giữ nguyên điểm.
+* Điều chỉnh điểm.
+* Bác bỏ yêu cầu phúc khảo.
+
+Nếu sinh viên không đồng ý với kết quả này, sinh viên có thể tiếp tục khiếu nại lên University Appeals Committee theo quy trình của nhà trường.
+
+---
+
+# Nguồn tham chiếu chính thức
+
+1. Academic Regulations for Full-Time Undergraduate Programs
+
+   * Article 21: Attendance and Absence Policy
+   * Article 22: Final Exam Format and Schedule
+   * Article 27: Grade Appeal
+
+2. Student Grade Appeal Procedure (PRC-AQA-002-V2.0)
+
+   * Ban hành ngày 21/01/2026
+   * Áp dụng cho toàn bộ sinh viên VinUniversity
+
+3. Registrar Office – Exams & Grades
+
+   * Hướng dẫn về thi cuối kỳ, thi bù và quản lý điểm số.
+
+# Ghi chú
+
+Nếu có sự khác biệt giữa tài liệu này và các văn bản chính thức của VinUniversity, văn bản chính thức do VinUniversity ban hành sẽ được ưu tiên áp dụng.
