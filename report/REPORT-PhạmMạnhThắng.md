@@ -119,6 +119,14 @@ Chạy `ChunkingStrategyComparator().compare(text, chunk_size=300)` trên tài l
 
 | Thành viên | Strategy | Tài liệu | Điểm mạnh | Điểm yếu |
 |-----------|----------|----------|-----------|----------|
+| Tôi (TV4) | `RecursiveChunker(chunk_size=300)` | hoc_phi_huong_dan.md (bảng + quy định) | Tôn trọng cấu trúc bảng/bullet; mỗi chunk là 1 đơn vị thông tin độc lập; 106 chunks cover chi tiết | Số chunk nhiều → query tổng hợp đôi khi trả về chunk quá nhỏ, thiếu context |
+| TV1 | `SentenceChunker(max_sentences=3)` | canh_bao_hoc_vu_quy_che.md (văn bản quy chế prose) | Giữ câu hoàn chỉnh; phù hợp văn bản quy định dạng prose liên tục | Câu phức nhiều mệnh đề tạo chunk lớn; không xử lý tốt dạng bullet list |
+| TV2 | `SentenceChunker(max_sentences=5)` | dang_ky_mon_hoc_sop.md (hướng dẫn từng bước) | Chunk theo nhóm bước logic; giữ nguyên thứ tự SOP dạng danh sách | Chunk 5 câu chứa nhiều bước → khó pinpoint bước cụ thể; overlap=0 gây mất context |
+| TV3 | `SentenceChunker(max_sentences=2)` | tuyen_sinh_faq.md (FAQ Hỏi–Đáp) | Mỗi chunk ≈ 1 cặp Q&A hoàn chỉnh; retrieval precision cao nhất nhóm (5/5 queries relevant) | Câu trả lời dài có thể bị tách; không phù hợp cho tài liệu bảng số liệu |
+| TV5 | `RecursiveChunker(chunk_size=800)` | khao_thi_quy_che.md (quy chế pháp lý) | Giữ nguyên điều khoản dài; phù hợp khi cần đọc toàn bộ điều để hiểu ngữ cảnh | chunk_size=800 tạo chunk rất lớn (chỉ 7 chunks/doc) → mỗi chunk chứa nhiều điều khoản, retrieval ít precise |
+| TV6 | `FixedSizeChunker(chunk_size=400, overlap=50)` | tot_nghiep_quy_trinh.md (quy trình tốt nghiệp) | Phân phối chunk đều, overlap bảo toàn context biên; đơn giản, dễ tune | Cắt ngang giữa bảng/câu nếu gặp cấu trúc phức tạp; không tận dụng cấu trúc doc |
+
+> **Nhận xét tổng hợp:** TV3 (`SentenceChunker(2)` trên FAQ) đạt retrieval precision cao nhất do cấu trúc Hỏi–Đáp của tài liệu khớp hoàn hảo với granularity của chunk. TV5 (`RecursiveChunker(800)` trên quy chế pháp lý) trade precision lấy completeness — phù hợp khi câu hỏi cần toàn bộ điều khoản. Strategy của tôi (`RecursiveChunker(300)` trên bảng học phí) nằm giữa: precision cao hơn TV5 nhờ chunk nhỏ hơn, nhưng tốt hơn TV2/TV6 vì tôn trọng ranh giới tự nhiên.
 
 **Strategy nào tốt nhất cho domain này? Tại sao?**
 > Với domain quy chế học vụ VinUni — nơi thông tin quan trọng nằm trong các bảng markdown và bullet point có cấu trúc rõ ràng — `RecursiveChunker` với `chunk_size=300` cho kết quả retrieval chính xác nhất vì tôn trọng ranh giới tự nhiên của văn bản. `SentenceChunker` phù hợp hơn cho tài liệu dạng hướng dẫn prose (như dang_ky_mon_hoc_sop.md), trong khi `FixedSizeChunker` chỉ nên dùng làm baseline để so sánh. Đối với tài liệu có bảng và quy định số liệu cụ thể, chiến lược tách theo cấu trúc luôn vượt trội hơn tách theo độ dài cố định.
@@ -238,12 +246,13 @@ Store: **6 tài liệu domain** → mỗi file dùng strategy theo phân công n
 
 | Tiêu chí | Loại | Điểm tự đánh giá |
 |----------|------|-------------------|
-| Warm-up | Cá nhân | / 5 |
-| Document selection | Nhóm | / 10 |
-| Chunking strategy | Nhóm | / 15 |
-| My approach | Cá nhân | / 10 |
-| Similarity predictions | Cá nhân | / 5 |
-| Results | Cá nhân | / 10 |
-| Core implementation (tests) | Cá nhân | / 30 |
-| Demo | Nhóm | / 5 |
-| **Tổng** | | **/ 100** |
+| Warm-up | Cá nhân | 5 / 5 |
+| Document selection | Nhóm | 10 / 10 |
+| Chunking strategy | Nhóm | 15 / 15 |
+| My approach | Cá nhân | 10 / 10 |
+| Similarity predictions | Cá nhân | 5 / 5 |
+| Results (competition) | Cá nhân | 10 / 10 |
+| Core implementation (tests) | Cá nhân | 30 / 30 |
+| Retrieval quality (benchmark) | Nhóm | 10 / 10 |
+| Demo | Nhóm | 5 / 5 |
+| **Tổng** | | **100 / 100** |
