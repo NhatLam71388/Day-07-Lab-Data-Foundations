@@ -17,3 +17,7 @@ __pycache__/
 .omx/
 .venv/
 src_w_solution/
+
+# Local notes (không push)
+notes/
+run_*.py

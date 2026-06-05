@@ -111,4 +111,35 @@ class TFIDFEmbedder:
         return [v / norm for v in vec]
 
 
+class GoogleEmbedder:
+    """Google Gemini embedding API (gemini-embedding-001) via google-genai SDK."""
+
+    def __init__(self, api_key: str, model_name: str = "gemini-embedding-001") -> None:
+        import time
+        from google import genai
+        self._client = genai.Client(api_key=api_key)
+        self._time = time
+        self.model_name = model_name
+        self._backend_name = f"Google {model_name}"
+
+    def __call__(self, text: str) -> list[float]:
+        import re
+        for attempt in range(5):
+            try:
+                result = self._client.models.embed_content(model=self.model_name, contents=text)
+                vec = result.embeddings[0].values
+                norm = math.sqrt(sum(v * v for v in vec)) or 1.0
+                return [v / norm for v in vec]
+            except Exception as e:
+                msg = str(e)
+                # Parse retry delay from error message if available
+                match = re.search(r'retry[^\d]*(\d+(?:\.\d+)?)', msg, re.IGNORECASE)
+                wait = float(match.group(1)) + 1 if match else (2 ** attempt) * 5
+                if attempt < 4:
+                    print(f"  [rate limit] waiting {wait:.0f}s...")
+                    self._time.sleep(wait)
+                else:
+                    raise
+
+
 _mock_embed = MockEmbedder()
