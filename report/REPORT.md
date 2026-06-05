@@ -168,13 +168,13 @@ Chạy 5 benchmark queries của nhóm trên implementation cá nhân của bạ
 
 ### Benchmark Queries & Gold Answers (nhóm thống nhất)
 
-| # | Query | Gold Answer |
-|---|-------|-------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+| # | Query | Gold Answer | Nguồn tài liệu |
+|---|-------|-------------|----------------|
+| 1 | Các bước đăng ký môn học trên hệ thống SIS là gì? | 5 bước: (1) Đăng nhập SIS → (2) Vào Academics → Course Registration → chọn học kỳ → nhấn Register → (3) Tìm môn theo mã hoặc tên → (4) Nhấn Add rồi Register, kiểm tra trạng thái "Registered" → (5) Xác nhận tại Your Class Schedule. Lưu ý: trạng thái "Selected" nghĩa là chưa đăng ký thành công. | dang_ky_mon_hoc_sop.md |
+| 2 | Sinh viên bị cảnh báo học vụ khi nào và hậu quả là gì nếu không cải thiện? | Học bổng tự động hạ 1 bậc (≈10%) nếu cGPA cuối năm dưới 2.50. Nếu chậm nộp học phí 2 kỳ liên tiếp không khắc phục sau nhắc nhở → bị buộc thôi học. Hệ thống khóa tài khoản SIS/Canvas/Thư viện khi nợ học phí quá hạn. | hoc_phi_huong_dan.md |
+| 3 | Điều kiện tiếng Anh để nhập học VinUni là gì? Từ năm 2026 có thay đổi gì không? | Yêu cầu: IELTS 6.5 (không kỹ năng nào dưới 6.0) hoặc TOEFL iBT 79+ (Writing ≥20, Speaking ≥18, Reading ≥15, Listening ≥15) hoặc PTE Academic ≥58 (không kỹ năng nào dưới 50) hoặc Cambridge CAE ≥176. Từ 2026: bắt buộc IELTS 6.5 khi nhập học — VinUni ngừng tổ chức kỳ thi tiếng Anh đầu vào và Khóa Dự bị Tiếng Anh. | tuyen_sinh_faq.md |
+| 4 | Thời hạn đóng học phí tại VinUni là khi nào? Nếu muốn gia hạn thì cần làm gì và trong bao lâu? | Hạn đóng: trước ngày làm việc cuối tuần thứ 2 trước khi học kỳ bắt đầu (≥14 ngày trước khai giảng). Để gia hạn: nộp Đơn xin gia hạn lên SAM tối thiểu 14 ngày trước hạn, kèm thư bảo lãnh có công chứng của phụ huynh. Thời gian gia hạn tối đa 4 tuần kể từ ngày học kỳ bắt đầu. Chậm nộp mà không có đơn: phạt 2.000.000đ + khóa SIS + hủy đăng ký môn. | hoc_phi_huong_dan.md |
+| 5 | Sinh viên cần nộp hồ sơ hoãn thi trong thời hạn bao lâu? Những lý do nào không được chấp nhận? | Hồ sơ phải nộp cho Registrar Office trong vòng 01 tuần kể từ ngày thi hoặc ngày vắng mặt, kèm giấy tờ chứng minh (giấy khám bệnh/nhập viện, giấy xác nhận cơ quan, văn bản hoạt động chính thức của trường). Lý do KHÔNG được chấp nhận: vé máy bay về quê sớm, kế hoạch du lịch cá nhân, kỳ nghỉ gia đình, lý do cá nhân không có chứng minh. | khao_thi_quy_che.md |
 
 ### Kết Quả Của Tôi
 
