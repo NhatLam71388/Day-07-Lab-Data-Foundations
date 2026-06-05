@@ -47,8 +47,28 @@ class SentenceChunker:
         self.max_sentences_per_chunk = max(1, max_sentences_per_chunk)
 
     def chunk(self, text: str) -> list[str]:
-        # TODO: split into sentences, group into chunks
-        raise NotImplementedError("Implement SentenceChunker.chunk")
+        if not text.strip():
+            return []
+        
+        parts = re.split(r'(\. |\! |\? |\.\n)', text)
+        sentences = []
+        current = ""
+        for i in range(len(parts)):
+            if i % 2 == 0:
+                current += parts[i]
+            else:
+                current += parts[i]
+                if current.strip():
+                    sentences.append(current.strip())
+                current = ""
+        if current.strip():
+            sentences.append(current.strip())
+            
+        chunks = []
+        for i in range(0, len(sentences), self.max_sentences_per_chunk):
+            chunk = " ".join(sentences[i:i + self.max_sentences_per_chunk])
+            chunks.append(chunk)
+        return chunks
 
 
 class RecursiveChunker:
@@ -66,12 +86,49 @@ class RecursiveChunker:
         self.chunk_size = chunk_size
 
     def chunk(self, text: str) -> list[str]:
-        # TODO: implement recursive splitting strategy
-        raise NotImplementedError("Implement RecursiveChunker.chunk")
+        if not text:
+            return []
+        return self._split(text, self.separators)
 
     def _split(self, current_text: str, remaining_separators: list[str]) -> list[str]:
-        # TODO: recursive helper used by RecursiveChunker.chunk
-        raise NotImplementedError("Implement RecursiveChunker._split")
+        if len(current_text) <= self.chunk_size:
+            return [current_text]
+            
+        if not remaining_separators:
+            return [current_text[i:i+self.chunk_size] for i in range(0, len(current_text), self.chunk_size)]
+            
+        sep = remaining_separators[0]
+        next_seps = remaining_separators[1:]
+        
+        if sep == "":
+            return [current_text[i:i+self.chunk_size] for i in range(0, len(current_text), self.chunk_size)]
+            
+        parts = current_text.split(sep)
+        
+        if len(parts) == 1:
+            return self._split(current_text, next_seps)
+            
+        chunks = []
+        current_chunk = parts[0]
+        
+        for part in parts[1:]:
+            if len(current_chunk) + len(sep) + len(part) <= self.chunk_size:
+                current_chunk += sep + part
+            else:
+                chunks.append(current_chunk)
+                current_chunk = part
+                
+        if current_chunk:
+            chunks.append(current_chunk)
+            
+        final_chunks = []
+        for c in chunks:
+            if len(c) > self.chunk_size:
+                final_chunks.extend(self._split(c, next_seps))
+            else:
+                final_chunks.append(c)
+                
+        return final_chunks
 
 
 def _dot(a: list[float], b: list[float]) -> float:
@@ -86,13 +143,36 @@ def compute_similarity(vec_a: list[float], vec_b: list[float]) -> float:
 
     Returns 0.0 if either vector has zero magnitude.
     """
-    # TODO: implement cosine similarity formula
-    raise NotImplementedError("Implement compute_similarity")
+    dot_product = sum(a * b for a, b in zip(vec_a, vec_b))
+    mag_a = math.sqrt(sum(a * a for a in vec_a))
+    mag_b = math.sqrt(sum(b * b for b in vec_b))
+    if mag_a == 0 or mag_b == 0:
+        return 0.0
+    return dot_product / (mag_a * mag_b)
 
 
 class ChunkingStrategyComparator:
     """Run all built-in chunking strategies and compare their results."""
 
     def compare(self, text: str, chunk_size: int = 200) -> dict:
-        # TODO: call each chunker, compute stats, return comparison dict
-        raise NotImplementedError("Implement ChunkingStrategyComparator.compare")
+        fixed = FixedSizeChunker(chunk_size=chunk_size).chunk(text)
+        sentences = SentenceChunker(max_sentences_per_chunk=3).chunk(text)
+        recursive = RecursiveChunker(chunk_size=chunk_size).chunk(text)
+        
+        return {
+            "fixed_size": {
+                "count": len(fixed),
+                "avg_length": sum(len(c) for c in fixed) / max(1, len(fixed)),
+                "chunks": fixed
+            },
+            "by_sentences": {
+                "count": len(sentences),
+                "avg_length": sum(len(c) for c in sentences) / max(1, len(sentences)),
+                "chunks": sentences
+            },
+            "recursive": {
+                "count": len(recursive),
+                "avg_length": sum(len(c) for c in recursive) / max(1, len(recursive)),
+                "chunks": recursive
+            }
+        }
