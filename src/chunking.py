@@ -81,9 +81,10 @@ class RecursiveChunker:
 
     DEFAULT_SEPARATORS = ["\n\n", "\n", ". ", " ", ""]
 
-    def __init__(self, separators: list[str] | None = None, chunk_size: int = 500) -> None:
+    def __init__(self, separators: list[str] | None = None, chunk_size: int = 500, overlap: int = 0) -> None:
         self.separators = self.DEFAULT_SEPARATORS if separators is None else list(separators)
         self.chunk_size = chunk_size
+        self.overlap = overlap
 
     def chunk(self, text: str) -> list[str]:
         if not text:
@@ -99,7 +100,8 @@ class RecursiveChunker:
         # No more separators — hard-cut at chunk_size
         if not remaining_separators:
             chunks: list[str] = []
-            for start in range(0, len(current_text), self.chunk_size):
+            step = max(1, self.chunk_size - self.overlap)
+            for start in range(0, len(current_text), step):
                 piece = current_text[start : start + self.chunk_size]
                 if piece:
                     chunks.append(piece)
@@ -110,9 +112,9 @@ class RecursiveChunker:
         next_separators = remaining_separators[1:]
 
         if sep == "":
-            # Character-level fallback: hard-cut
             chunks = []
-            for start in range(0, len(current_text), self.chunk_size):
+            step = max(1, self.chunk_size - self.overlap)
+            for start in range(0, len(current_text), step):
                 piece = current_text[start : start + self.chunk_size]
                 if piece:
                     chunks.append(piece)
@@ -146,7 +148,14 @@ class RecursiveChunker:
                     result.extend(sub_chunks)
                     current_chunk = ""
                 else:
-                    current_chunk = part
+                    if self.overlap > 0 and current_chunk:
+                        # try to extract a suffix of current_chunk up to overlap size
+                        overlap_text = current_chunk[-self.overlap:]
+                        current_chunk = overlap_text + sep + part if sep else overlap_text + part
+                        if len(current_chunk) > self.chunk_size:
+                            current_chunk = part
+                    else:
+                        current_chunk = part
 
         if current_chunk:
             result.append(current_chunk)
