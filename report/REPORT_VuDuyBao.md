@@ -2,7 +2,7 @@
 
 **Họ tên:** Vũ Duy Bảo
 **MSSV:** 2A202600565
-**Nhóm:** [Tên nhóm]
+**Nhóm:** Nhóm: VinUni Academic Policies - 6 thành viên (Member 5)
 **Ngày:** 05/06/2026
 
 ---
