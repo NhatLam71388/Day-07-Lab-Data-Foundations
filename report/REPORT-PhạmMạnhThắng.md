@@ -84,46 +84,40 @@
 
 ### Baseline Analysis
 
-Chạy `ChunkingStrategyComparator().compare()` trên 2-3 tài liệu:
+Chạy `ChunkingStrategyComparator().compare(text, chunk_size=300)` trên tài liệu `hoc_phi_huong_dan.md` (21.340 ký tự — gồm chính sách học phí GDL-SAM-004 và biểu phí VU_TS03.VN):
 
 | Tài liệu | Strategy | Chunk Count | Avg Length | Preserves Context? |
 |-----------|----------|-------------|------------|-------------------|
-| | FixedSizeChunker (`fixed_size`) | | | |
-| | SentenceChunker (`by_sentences`) | | | |
-| | RecursiveChunker (`recursive`) | | | |
+| hoc_phi_huong_dan.md | FixedSizeChunker (`fixed_size`) | 72 | 296 | Không — cắt giữa câu, phá vỡ bảng và bullet |
+| hoc_phi_huong_dan.md | SentenceChunker (`by_sentences`) | 42 | 506 | Trung bình — giữ câu nguyên vẹn nhưng chunk quá dài cho tài liệu có bảng |
+| hoc_phi_huong_dan.md | RecursiveChunker (`recursive`) | 106 | 200 | Tốt — ưu tiên tách theo `\n\n` và `\n`, giữ nguyên từng mục, từng dòng bảng |
 
 ### Strategy Của Tôi
 
-**Loại:** [FixedSizeChunker / SentenceChunker / RecursiveChunker / custom strategy]
+**Loại:** `RecursiveChunker(chunk_size=300)`
 
 **Mô tả cách hoạt động:**
-> *Viết 3-4 câu: strategy chunk thế nào? Dựa trên dấu hiệu gì?*
+> `RecursiveChunker` thử lần lượt các separator theo thứ tự ưu tiên: `\n\n` (đoạn văn) → `\n` (dòng) → `. ` (câu) → ` ` (từ) → `""` (ký tự). Với mỗi separator, văn bản được split thành các phần nhỏ, sau đó gộp dần cho đến khi vượt `chunk_size=300` thì flush chunk hiện tại ra. Nếu một phần đơn lẻ vẫn lớn hơn `chunk_size`, hàm `_split` đệ quy sang separator tiếp theo. Điều này đảm bảo chunk luôn được cắt tại ranh giới tự nhiên của văn bản thay vì cắt cứng theo số ký tự.
 
 **Tại sao tôi chọn strategy này cho domain nhóm?**
-> *Viết 2-3 câu: domain có pattern gì mà strategy khai thác?*
-
-**Code snippet (nếu custom):**
-```python
-# Paste implementation here
-```
+> Tài liệu học phí VinUni có cấu trúc phân cấp rõ ràng: tiêu đề section (`##`), điểm bullet (`-`), và bảng markdown (`|`). `RecursiveChunker` ưu tiên tách tại `\n\n` (phân cách giữa các section) và `\n` (phân cách giữa các dòng bảng), đảm bảo mỗi chunk chứa một mục hoàn chỉnh như "mức học phí cử nhân" hoặc "quy định gia hạn" — không bị ghép lẫn nội dung không liên quan như `FixedSizeChunker`. Với `chunk_size=300`, các chunk đủ ngắn để embedding nắm bắt chính xác từng quy định cụ thể.
 
 ### So Sánh: Strategy của tôi vs Baseline
 
 | Tài liệu | Strategy | Chunk Count | Avg Length | Retrieval Quality? |
 |-----------|----------|-------------|------------|--------------------|
-| | best baseline | | | |
-| | **của tôi** | | | |
+| hoc_phi_huong_dan.md | FixedSizeChunker (baseline tốt nhất về phân phối đều) | 72 | 296 | Thấp — chunk cắt ngang giữa bảng, mất nghĩa |
+| hoc_phi_huong_dan.md | **RecursiveChunker (của tôi)** | **106** | **200** | **Cao** — mỗi chunk là 1 quy định/dòng bảng hoàn chỉnh |
+
+> `RecursiveChunker` tạo nhiều chunk hơn nhưng trung bình ngắn hơn và có độ chính xác retrieval cao hơn vì mỗi chunk chứa một đơn vị thông tin độc lập. `FixedSizeChunker` tuy phân phối đều nhưng thường cắt giữa dòng bảng — query "học phí cử nhân điều dưỡng" có thể match chunk chứa nửa bảng không có giá trị.
 
 ### So Sánh Với Thành Viên Khác
 
-| Thành viên | Strategy | Retrieval Score (/10) | Điểm mạnh | Điểm yếu |
-|-----------|----------|----------------------|-----------|----------|
-| Tôi | | | | |
-| [Tên] | | | | |
-| [Tên] | | | | |
+| Thành viên | Strategy | Tài liệu | Điểm mạnh | Điểm yếu |
+|-----------|----------|----------|-----------|----------|
 
 **Strategy nào tốt nhất cho domain này? Tại sao?**
-> *Viết 2-3 câu:*
+> Với domain quy chế học vụ VinUni — nơi thông tin quan trọng nằm trong các bảng markdown và bullet point có cấu trúc rõ ràng — `RecursiveChunker` với `chunk_size=300` cho kết quả retrieval chính xác nhất vì tôn trọng ranh giới tự nhiên của văn bản. `SentenceChunker` phù hợp hơn cho tài liệu dạng hướng dẫn prose (như dang_ky_mon_hoc_sop.md), trong khi `FixedSizeChunker` chỉ nên dùng làm baseline để so sánh. Đối với tài liệu có bảng và quy định số liệu cụ thể, chiến lược tách theo cấu trúc luôn vượt trội hơn tách theo độ dài cố định.
 
 ---
 
@@ -167,16 +161,18 @@ OK
 
 ## 5. Similarity Predictions — Cá nhân (5 điểm)
 
+Embedding backend: `LocalEmbedder` (all-MiniLM-L6-v2, 384-dim). Ngưỡng phân loại: score ≥ 0.6 → high, < 0.6 → low.
+
 | Pair | Sentence A | Sentence B | Dự đoán | Actual Score | Đúng? |
 |------|-----------|-----------|---------|--------------|-------|
-| 1 | | | high / low | | |
-| 2 | | | high / low | | |
-| 3 | | | high / low | | |
-| 4 | | | high / low | | |
-| 5 | | | high / low | | |
+| 1 | "Thời hạn đóng học phí trước ngày làm việc cuối cùng của tuần thứ hai." | "Hạn nộp học phí chậm nhất là 14 ngày trước khai giảng." | high | 0.674 | ✓ |
+| 2 | "Sinh viên bị hạ bậc học bổng nếu cGPA dưới 2.50." | "Học bổng Tài năng tự động giảm 1 bậc khi điểm tích lũy không đạt chuẩn." | high | 0.539 | ✗ |
+| 3 | "Phí thi lại môn lý thuyết là 1.500.000 đồng mỗi lần." | "Sinh viên cần nộp đơn xin gia hạn học phí 14 ngày trước hạn." | low | 0.480 | ✓ |
+| 4 | "Học phí cử nhân điều dưỡng là 349.650.000 đồng mỗi năm." | "Học phí ngành y khoa và cử nhân khác là 815.850.000 đồng mỗi năm." | high | 0.824 | ✓ |
+| 5 | "KTX phòng 4-8 sinh viên có giá 3.200.000 đồng mỗi tháng." | "Sinh viên vi phạm kỷ luật cấp độ 3 sẽ bị thu hồi học bổng." | low | 0.586 | ✓ |
 
 **Kết quả nào bất ngờ nhất? Điều này nói gì về cách embeddings biểu diễn nghĩa?**
-> *Viết 2-3 câu:*
+> Pair 2 là bất ngờ nhất: dù cả hai câu đều diễn đạt cùng quy định (hạ bậc học bổng khi GPA không đạt), score thực tế chỉ đạt 0.539 — thấp hơn ngưỡng high. Điều này cho thấy `all-MiniLM-L6-v2` nhạy cảm với sự khác biệt từ vựng cụ thể: "cGPA" vs. "điểm tích lũy" và "hạ bậc" vs. "giảm 1 bậc" được biểu diễn ở các vùng khác nhau trong không gian vector, dù ý nghĩa hoàn toàn tương đồng. Điều này nhắc nhở rằng embedding model được huấn luyện chủ yếu trên tiếng Anh có thể chưa capture tốt paraphrase tiếng Việt chuyên ngành.
 
 ---
 
@@ -211,13 +207,13 @@ Chạy 5 benchmark queries của nhóm trên implementation cá nhân của bạ
 ## 7. What I Learned (5 điểm — Demo)
 
 **Điều hay nhất tôi học được từ thành viên khác trong nhóm:**
-> *Viết 2-3 câu:*
+> Qua việc so sánh kết quả giữa các thành viên, tôi nhận ra rằng không có một chunking strategy nào tốt nhất cho mọi loại tài liệu — mỗi strategy phù hợp với một cấu trúc văn bản riêng. Cụ thể, thành viên 3 dùng `SentenceChunker(max_sentences=2)` cho tài liệu FAQ tuyển sinh và cho kết quả retrieval rất tốt vì mỗi cặp Hỏi–Đáp vừa khít trong một chunk, trong khi strategy đó sẽ hoàn toàn thất bại với tài liệu bảng học phí của tôi vì bảng không có ranh giới câu rõ ràng. Điều này dạy tôi rằng bước phân tích cấu trúc tài liệu trước khi chọn strategy là không thể bỏ qua.
 
 **Điều hay nhất tôi học được từ nhóm khác (qua demo):**
-> *Viết 2-3 câu:*
+> Một nhóm khác đã minh họa cách thêm metadata `section` (tên mục lớn trong tài liệu) vào mỗi chunk, sau đó dùng `search_with_filter(metadata_filter={"section": "hoc_phi"})` để thu hẹp phạm vi tìm kiếm trước khi tính similarity — kết quả retrieval chính xác hơn đáng kể so với tìm kiếm toàn bộ store. Tôi chưa khai thác tính năng `search_with_filter` đủ sâu trong benchmark của mình và đây là cải tiến tôi sẽ áp dụng ngay. Điều này nhấn mạnh rằng metadata không chỉ là thông tin phụ mà là công cụ retrieval trực tiếp.
 
 **Nếu làm lại, tôi sẽ thay đổi gì trong data strategy?**
-> *Viết 2-3 câu:*
+> Thứ nhất, tôi sẽ tách `hoc_phi_huong_dan.md` thành hai file riêng biệt: một file chứa chính sách/quy trình (văn bản prose) và một file chứa biểu phí (bảng số liệu), vì hai loại nội dung này cần chunk_size và strategy khác nhau — prose phù hợp với `SentenceChunker`, còn bảng phù hợp với `RecursiveChunker` chunk nhỏ. Thứ hai, tôi sẽ gán thêm metadata `content_type` (`"policy"` hoặc `"fee_table"`) để query về số tiền cụ thể chỉ search trong bảng phí, tránh nhiễu từ phần văn bản quy định. Hai thay đổi này kết hợp sẽ tăng precision của retrieval mà không cần thay đổi embedding model.
 
 ---
 
